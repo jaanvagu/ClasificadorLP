@@ -1,0 +1,5 @@
+0        [INFO ] |entrada_salida.GestionarArchivos                  | - Procesando: Procesados CSV.csv
+211      [INFO ] |preprocesamiento.Preprocesamiento                 | - Normalizando...
+2916     [INFO ] |preprocesamiento.Preprocesamiento                 | - Preprocesamiento Realizado
+2925     [ERROR] |preprocesamiento.Lematizar                        | - Error en lematizar: Unable to locate model [/treetagger/lib/spanish.par] in the following locations [C:\TreeTagger\models\treetagger\lib\spanish.par].  Make sure the environment variable 'TREETAGGER_HOME' or 'TAGDIR' or the system property 'treetagger.home' point to the TreeTagger installation directory.
+2925     [INFO ] |preprocesamiento.Lematizar                        | - Lematizacion Realizada

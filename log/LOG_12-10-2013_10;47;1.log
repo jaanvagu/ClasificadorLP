@@ -1,0 +1,5 @@
+0        [INFO ] |entrada_salida.GestionarArchivos                  | - Procesando: Consolidado Top Terra - Utiles Normalizados v2.0
+564      [INFO ] |LP.GestionarLabelPropagation                      | - Ejecutando Label Propagation
+117145   [INFO ] |LP.GestionarLabelPropagation                      | - Finalizo ejecucion Label Propagation
+117146   [ERROR] |entrada_salida.LeerArchivoSalidaLP                | - Error en Leer archivo salida LP: C:\Label_Propagation\Datos_Prueba\Datos_Top_Terra\label_prop_Top_Terra_4053 (El sistema no puede encontrar el archivo especificado)
+117148   [INFO ] |evaluacion.GestionarIndicadores                   | - Indicadores Label Propagation

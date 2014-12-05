@@ -1,0 +1,9 @@
+0        [INFO ] |entrada_salida.GestionarArchivos                  | - Procesando: Consolidado Top Terra - Utiles Normalizados v2.0
+695      [INFO ] |extraccion_caracteristicas.GestionarVectorPalabras| - Vector de palabras creado
+1053     [INFO ] |extraccion_caracteristicas.GestionarVectorPalabras| - DB: 0	WN: 0
+1053     [INFO ] |extraccion_caracteristicas.GestionarVectorPalabras| - Frecuencias generadas
+1055     [INFO ] |extraccion_caracteristicas.GestionarDistancias    | - Calculando Similitud Coseno entre cada par de Comentarios...
+1815374  [INFO ] |extraccion_caracteristicas.GestionarDistancias    | - Similitudes calculadas
+1815401  [INFO ] |LP.GestionarSemillasLP                            | - Semillas generadas
+1815426  [INFO ] |LP.GestionarSemillasLP                            | - Gold labels generadas
+1815428  [INFO ] |utiles.ArchivoConfiguracionLP                     | - Archivo configuracion generado

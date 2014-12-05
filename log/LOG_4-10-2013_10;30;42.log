@@ -1,0 +1,10 @@
+0        [INFO ] |entrada_salida.GestionarArchivos                  | - Procesando: Prueba.csv
+21       [INFO ] |preprocesamiento.Preprocesamiento                 | - Normalizando...
+50       [INFO ] |preprocesamiento.Preprocesamiento                 | - Preprocesamiento Realizado
+298      [INFO ] |preprocesamiento.Lematizar                        | - Lematizacion Realizada
+336      [INFO ] |main.Main                                         | - Normalizacion terminada
+339      [INFO ] |extraccion_caracteristicas.GestionarVectorPalabras| - Vector de palabras creado
+341      [INFO ] |extraccion_caracteristicas.GestionarVectorPalabras| - DB: 0	WN: 0
+341      [INFO ] |extraccion_caracteristicas.GestionarVectorPalabras| - Frecuencias generadas
+343      [INFO ] |extraccion_caracteristicas.GestionarDistancias    | - Calculando Similitud Coseno entre cada par de Comentarios...
+351      [INFO ] |extraccion_caracteristicas.GestionarDistancias    | - Similitudes calculadas

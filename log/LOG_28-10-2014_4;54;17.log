@@ -1,0 +1,6 @@
+0        [INFO ] |entrada_salida.GestionarArchivos                  | - Procesando: Procesados CSV.csv
+266      [INFO ] |preprocesamiento.Preprocesamiento                 | - Normalizando...
+268      [INFO ] |preprocesamiento.Preprocesamiento                 | - Preprocesamiento Realizado
+338      [INFO ] |main.Main                                         | - Normalizacion terminada
+339      [INFO ] |utiles.DistribuirDatos                            | - Distribuyendo datos
+5337     [INFO ] |utiles.DistribuirDatos                            | - Distribucion uniforme finalizada. N=400

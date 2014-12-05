@@ -1,0 +1,7 @@
+0        [INFO ] |entrada_salida.GestionarArchivos                  | - Procesando: Procesados CSV.csv
+206      [INFO ] |preprocesamiento.Preprocesamiento                 | - Normalizando...
+2933     [INFO ] |preprocesamiento.Preprocesamiento                 | - Preprocesamiento Realizado
+18278    [INFO ] |preprocesamiento.Lematizar                        | - Lematizacion Realizada
+18287    [ERROR] |entrada_salida.GestionarArchivos                  | - Error al guardar lista de comentarios normalizados
+\Procesados CSV - Normalizado v2.0 (Acceso denegado)
+18287    [INFO ] |main.Main                                         | - Normalizacion terminada

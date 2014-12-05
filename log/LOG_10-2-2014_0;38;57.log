@@ -1,0 +1,18 @@
+0        [INFO ] |entrada_salida.GestionarArchivos                  | - Procesando: P2.csv
+12       [INFO ] |preprocesamiento.Preprocesamiento                 | - Normalizando...
+16       [INFO ] |preprocesamiento.Preprocesamiento                 | - Preprocesamiento Realizado
+125      [INFO ] |preprocesamiento.Lematizar                        | - Lematizacion Realizada
+137      [INFO ] |main.Main                                         | - Normalizacion terminada
+193      [INFO ] |extraccion_caracteristicas.GestionarVectorPalabras| - Vector de palabras creado
+200      [INFO ] |extraccion_caracteristicas.GestionarVectorPalabras| - DB: 0	WN: 0
+200      [INFO ] |extraccion_caracteristicas.GestionarVectorPalabras| - Frecuencias generadas
+225      [INFO ] |extraccion_caracteristicas.GestionarDistancias    | - Calculando Similitud Coseno entre cada par de Comentarios...
+229      [INFO ] |extraccion_caracteristicas.GestionarDistancias    | - Similitudes calculadas
+260      [INFO ] |LP.GestionarSemillasLP                            | - Semillas generadas
+264      [INFO ] |LP.GestionarSemillasLP                            | - Gold labels generadas
+280      [INFO ] |utiles.ArchivoConfiguracionLP                     | - Archivo configuracion generado
+305      [INFO ] |LP.GestionarLabelPropagation                      | - Ejecutando Label Propagation
+26399    [INFO ] |LP.GestionarLabelPropagation                      | - Finalizo ejecucion Label Propagation
+26409    [INFO ] |evaluacion.GestionarIndicadores                   | - Indicadores Label Propagation
+26564    [INFO ] |entrada_salida.EscribirExcelSalida                | - Escrbiendo archivo de salida XLS
+26613    [INFO ] |entrada_salida.EscribirExcelSalida                | - Archivo XLS con etiquetas propagadas generado exitosamente
