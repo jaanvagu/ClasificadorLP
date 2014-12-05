@@ -1,0 +1,16 @@
+*.pyc
+*.class
+target/*
+.idea/*
+*.iml
+/target/
+/.metadata/
+/.settings/
+/RemoteSystemsTempFiles/
+/.project
+/.classpath
+*.orig
+*.log
+*.lck
+*.log.*
+Archivos_Guardados/*
