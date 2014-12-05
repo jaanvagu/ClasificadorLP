@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-HeadUpClient</actionName>
+            <displayName>HeadUpClient</displayName>
+            <goals>
+                <goal>scala:run</goal>
+                <goal>-DmainClass=org.dbpedia.spotlight.evaluation.external.HeadUpClient</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-DBPediaSpotlightClient</actionName>
+            <displayName>DBPediaSpotlightClient</displayName>
+            <goals>
+                <goal>scala:run</goal>
+                <goal>-DmainClass=org.dbpedia.spotlight.evaluation.external.DBpediaSpotlightClient</goal>
+            </goals>
+        </action>
+    </actions>

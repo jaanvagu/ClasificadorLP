@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="eval-0.6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/DBPedia_Spotlight v2.0/eval/target/eval-0.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
