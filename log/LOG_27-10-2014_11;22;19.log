@@ -1,5 +1,0 @@
-0        [INFO ] |entrada_salida.GestionarArchivos                  | - Procesando: Procesados CSV.csv
-222      [INFO ] |preprocesamiento.Preprocesamiento                 | - Normalizando...
-2899     [INFO ] |preprocesamiento.Preprocesamiento                 | - Preprocesamiento Realizado
-15088    [INFO ] |preprocesamiento.Lematizar                        | - Lematizacion Realizada
-15539    [INFO ] |main.Main                                         | - Normalizacion terminada

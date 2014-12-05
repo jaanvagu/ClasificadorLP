@@ -37,7 +37,7 @@ public class GestionarArchivos {
 
     //Método que obtiene la ruta de un archivo, a partir de un selector visual de archivos.
     public String obtenerRutaArchivoCSV(String tipo){
-        selectorArchivo = new JFileChooser("C:/Users/JairoAndrés/Desktop/Archivos CSV");        
+        selectorArchivo = new JFileChooser("/home/meridean-hp/Escritorio");
         filtroExtensionArchivo = new FileNameExtensionFilter("Archivos de texto (."+tipo+")", tipo);
         selectorArchivo.setFileFilter(filtroExtensionArchivo);
         opcionSeleccionada = selectorArchivo.showOpenDialog(new JTextArea());
@@ -103,7 +103,7 @@ public class GestionarArchivos {
             if(tipo.equals("Normalizado")){
                 temprutaArchivo = "./"+nombreArchivo+" - "+tipo+" "+Constantes.version2_0;
             }else{
-                temprutaArchivo = "./Consolidado "+obtenerNombreCompletoDelConsolidado()
+                temprutaArchivo = "./Archivos_Guardados/Consolidado "+obtenerNombreCompletoDelConsolidado()
                                  +" - "+tipo+" "+Constantes.version2_0;
             }
             

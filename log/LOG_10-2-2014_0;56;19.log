@@ -1,5 +1,0 @@
-0        [INFO ] |entrada_salida.GestionarArchivos                  | - Procesando: Consolidado Balance.csv
-399      [INFO ] |preprocesamiento.Preprocesamiento                 | - Normalizando...
-3942     [INFO ] |preprocesamiento.Preprocesamiento                 | - Preprocesamiento Realizado
-14531    [INFO ] |preprocesamiento.Lematizar                        | - Lematizacion Realizada
-14702    [INFO ] |main.Main                                         | - Normalizacion terminada

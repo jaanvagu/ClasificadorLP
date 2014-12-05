@@ -29,13 +29,7 @@ import org.openrdf.sail.rdbms.schema.HashTable;
 import preprocesamiento.Lematizar;
 import preprocesamiento.Preprocesamiento;
 import svm.SVM;
-import utiles.ArchivoConfiguracionLP;
-import utiles.ArchivoConfiguracionLog4j;
-import utiles.Constantes;
-import utiles.DistribuirDatos;
-import utiles.ExtenderComentarios;
-import utiles.Fecha;
-import utiles.SonidoBuffer;
+import utiles.*;
 import verificaciones.GestionarVerificaciones;
 
 public class Main {
@@ -215,21 +209,10 @@ public class Main {
 
         Vector<Comentario> comentarios = leerArchivoCSV.obtenerListaComentariosLeidos();
         Hashtable<String,Integer> tabla_etiqueta_cantidad = new Hashtable<String, Integer>();
-        Hashtable<String,ArrayList<String>> tabla_etiqueta_mensajes = new Hashtable<String, ArrayList<String>>();
-
-        int cont = 0;
-
-        JSONObject jsonObject = new JSONObject();
-
 
         for(int i=0; i<listaComentariosNormalizados.size(); i++){
 
-            /*System.out.println("[" + listaComentariosNormalizados.elementAt(i).obtenerIdComentario() + "]  " +
-                                listaComentariosNormalizados.elementAt(i).obtenerListaPalabrasEnComentario()
-                               +"\n|ETIQUETA: "+listaComentariosNormalizados.elementAt(i).obtenerEtiquetas().elementAt(0)+"|");*/
-
             ComentarioNormalizado comentario = listaComentariosNormalizados.elementAt(i);
-            cont++;
             if(tabla_etiqueta_cantidad.containsKey(comentario.obtenerEtiquetas().elementAt(0))){
                 int temp = tabla_etiqueta_cantidad.get(comentario.obtenerEtiquetas().elementAt(0));
                 tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(comentario.obtenerEtiquetas().elementAt(0)),
@@ -239,34 +222,12 @@ public class Main {
                 tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(comentario.obtenerEtiquetas().elementAt(0)),
                                             1);
             }
-
-            String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
-            ArrayList<String> mensajes = tabla_etiqueta_mensajes.get(etiqueta);
-            if(mensajes == null){
-                mensajes = new ArrayList<String>();
-            }
-            String mensajeTemp = "";
-            for(int j=0; j<comentario.obtenerListaPalabrasEnComentario().size(); j++){
-                mensajeTemp += " "+comentario.obtenerListaPalabrasEnComentario().elementAt(j);
-            }
-            mensajes.add(mensajeTemp.trim());
-            tabla_etiqueta_mensajes.put(etiqueta, mensajes);
-
         }
 
-        Enumeration<String> enumEtiquetas = tabla_etiqueta_mensajes.keys();
-        while (enumEtiquetas.hasMoreElements()){
-            JSONArray jsonArray = new JSONArray();
-            String etiqueta = enumEtiquetas.nextElement();
-            ArrayList<String> mensajes = tabla_etiqueta_mensajes.get(etiqueta);
-            jsonArray.addAll(mensajes);
-            jsonObject.put(etiqueta, jsonArray);
-        }
-
-        System.out.println("\n\n"+cont);
         System.out.println(tabla_etiqueta_cantidad);
-        System.out.println("\n"+jsonObject);
-        
+
+        Util.escribirComentariosEnJson(listaComentariosNormalizados);
+
         // ********* EXTRACCIÓN DE CARACTERÍSTICAS *********
 //        gestionVectorPalabras = new GestionarVectorPalabras(listaComentariosNormalizados);
 //        gestionVectorPalabras.contruirVectorDePalabras();
