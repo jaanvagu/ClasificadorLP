@@ -219,6 +219,16 @@ public class GestionarArchivos {
         }
     }
 
+    public void crearArchivoJson(){
+        try{
+            archivo = new File("./json/Comentarios.json");
+            escritor = new FileWriter(archivo);
+            bufferEscritor = new BufferedWriter(escritor);
+        } catch (Exception e){
+            System.err.println("Problema creando file json" + e.getMessage());
+        }
+    }
+
     //Método que cierra un archivo después de que se termino de escribir en él.
     public void cerrarArchivoTexto(){
         try{

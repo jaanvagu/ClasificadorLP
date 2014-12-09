@@ -207,26 +207,10 @@ public class Main {
         
         // ********* IMPRIMIR TEXTO DE LOS COMENTARIOS *********
 
-        Vector<Comentario> comentarios = leerArchivoCSV.obtenerListaComentariosLeidos();
-        Hashtable<String,Integer> tabla_etiqueta_cantidad = new Hashtable<String, Integer>();
 
-        for(int i=0; i<listaComentariosNormalizados.size(); i++){
-
-            ComentarioNormalizado comentario = listaComentariosNormalizados.elementAt(i);
-            if(tabla_etiqueta_cantidad.containsKey(comentario.obtenerEtiquetas().elementAt(0))){
-                int temp = tabla_etiqueta_cantidad.get(comentario.obtenerEtiquetas().elementAt(0));
-                tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(comentario.obtenerEtiquetas().elementAt(0)),
-                                            ++temp);
-            }
-            else{
-                tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(comentario.obtenerEtiquetas().elementAt(0)),
-                                            1);
-            }
-        }
-
-        System.out.println(tabla_etiqueta_cantidad);
-
+        // ********* ESCRIBIR JSON CON COMENTARIOS POR CATEGORÍA
         Util.escribirComentariosEnJson(listaComentariosNormalizados);
+
 
         // ********* EXTRACCIÓN DE CARACTERÍSTICAS *********
 //        gestionVectorPalabras = new GestionarVectorPalabras(listaComentariosNormalizados);

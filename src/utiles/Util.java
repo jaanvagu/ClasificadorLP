@@ -1,6 +1,7 @@
 package utiles;
 
 
+import entrada_salida.GestionarArchivos;
 import estructuras.ComentarioNormalizado;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,6 +13,8 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 public class Util {
+
+    private static GestionarArchivos gestionarArchivos = new GestionarArchivos();
 
     public static void escribirComentariosEnJson(Vector<ComentarioNormalizado> listaComentariosNormalizados){
 
@@ -47,6 +50,31 @@ public class Util {
             jsonObject.put(etiqueta, jsonArray);
         }
 
-        System.out.println("\n"+jsonObject);
+        gestionarArchivos.crearArchivoJson();
+        gestionarArchivos.escribirLineaEnArchivoTexto(jsonObject.toJSONString());
+        gestionarArchivos.cerrarArchivoTexto();
+
     }
+
+
+    public void cantidadDeComentariosPorEtiqueta(Vector<ComentarioNormalizado> listaComentariosNormalizados){
+        Hashtable<String,Integer> tabla_etiqueta_cantidad = new Hashtable<String, Integer>();
+
+        for(int i=0; i<listaComentariosNormalizados.size(); i++){
+
+            ComentarioNormalizado comentario = listaComentariosNormalizados.elementAt(i);
+            if(tabla_etiqueta_cantidad.containsKey(comentario.obtenerEtiquetas().elementAt(0))){
+                int temp = tabla_etiqueta_cantidad.get(comentario.obtenerEtiquetas().elementAt(0));
+                tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(comentario.obtenerEtiquetas().elementAt(0)),
+                        ++temp);
+            }
+            else{
+                tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(comentario.obtenerEtiquetas().elementAt(0)),
+                        1);
+            }
+        }
+
+        System.out.println(tabla_etiqueta_cantidad);
+    }
+
 }
