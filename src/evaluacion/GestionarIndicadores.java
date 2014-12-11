@@ -170,7 +170,7 @@ public class GestionarIndicadores {
         System.out.println("{"+correctas+" aciertos de "+total+"}");
     }
     
-    public void imprimirResultadosObtenidos(String algoritmo){ 
+    public void imprimirResultadosObtenidos(String algoritmo){
         etiDiferentes = tabla_Etiqueta_AparicionesTotalesCorrespondientes.keys();
         System.out.println("\nEtiqueta\tEstimadas por "+algoritmo+"\tCorrectas\tCorrespondientes\tPrecision\tRecall\tFScore");        
         while(etiDiferentes.hasMoreElements()){

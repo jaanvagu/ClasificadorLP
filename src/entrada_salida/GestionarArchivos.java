@@ -219,9 +219,9 @@ public class GestionarArchivos {
         }
     }
 
-    public void crearArchivoJson(){
+    public void crearArchivoJson(String nombreArchivo){
         try{
-            archivo = new File("./json/Comentarios.json");
+            archivo = new File("./json/" + nombreArchivo +".json");
             escritor = new FileWriter(archivo);
             bufferEscritor = new BufferedWriter(escritor);
         } catch (Exception e){

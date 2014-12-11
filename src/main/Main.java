@@ -196,11 +196,11 @@ public class Main {
 //        listaComentariosNormalizados = new Vector(extenderComentarios.extender(false, true));
 
         // ********* DISTRIBUCIÓN DE DATOS *********
-        distribuir = new DistribuirDatos(listaComentariosNormalizados);
+//        distribuir = new DistribuirDatos(listaComentariosNormalizados);
 //        distribuir.eliminarComentariosConEtiquetasRuido();
 //        distribuir.eliminarComentariosConEtiquetasBajaPrecision();
 //        listaComentariosNormalizados = distribuir.generarDistribucionUniformeNDatos(400,7);
-        listaComentariosNormalizados = distribuir.generarDistribucionUniformeNDatos(400);
+//        listaComentariosNormalizados = distribuir.generarDistribucionUniformeNDatos(400);
 //        distribuir.generarDistribucionProporcionalNDatos(100);
 //        listaComentariosNormalizados = new Vector(distribuir.eliminarComentariosConPalabrasRepetidasEnExceso());
 //        distribuir.generarListaSoloComentarioUtiles();
@@ -209,7 +209,10 @@ public class Main {
 
 
         // ********* ESCRIBIR JSON CON COMENTARIOS POR CATEGORÍA
+//        Util.generarJsonEntrenamiento(listaComentariosNormalizados);
         Util.escribirComentariosEnJson(listaComentariosNormalizados);
+
+        System.out.println(listaComentariosNormalizados.size());
 
 
         // ********* EXTRACCIÓN DE CARACTERÍSTICAS *********
