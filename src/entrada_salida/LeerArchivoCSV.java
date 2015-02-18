@@ -50,9 +50,11 @@ public class LeerArchivoCSV {
                 while (lectorArchivosCSV.readRecord()){
                     numeroFilaLeida++;
                     Comentario comentarioLeido = convertirFilaLeidaAComentario(numeroFilaLeida, indices);
-                    listaComentariosLeidos.addElement(comentarioLeido);
-                    LOG.debug(comentarioLeido.aString());
-                }                
+                    if(comentarioLeido != null) {
+                        listaComentariosLeidos.addElement(comentarioLeido);
+                        LOG.debug(comentarioLeido.aString());
+                    }
+                }
             }catch(Exception e){
                 LOG.error("Error en leerYAlmacenarLineasCSV: "+e.getMessage());
             }
@@ -130,7 +132,9 @@ public class LeerArchivoCSV {
                     fuente = campoLeido.trim().toLowerCase();
                 }
                 else if(encabezado_i.equals("categoria")){
-                    etiquetasLeidasPorFila.add(Preprocesamiento.quitarAcentos(campoLeido.trim().toLowerCase()));
+                    String etiqueta = Preprocesamiento.quitarAcentos(campoLeido.trim().toLowerCase());
+                    if(!etiqueta.equals(""))
+                        etiquetasLeidasPorFila.add(etiqueta);
                 }
                 /*else{
                     todasEtiquetasLeidasPorFila.addElement(campoLeido.trim().toLowerCase());
@@ -140,7 +144,11 @@ public class LeerArchivoCSV {
                 }*/
             }
             //etiquetasLeidasPorFila = identificarFormaEtiqueta(etiquetasLeidasPorFila,indices,todasEtiquetasLeidasPorFila);
-            comentarioLeido = new Comentario(numeroFilaLeida, autor, mensaje, fuente, etiquetasLeidasPorFila);
+
+            comentarioLeido = null;
+            if(!etiquetasLeidasPorFila.isEmpty()) {
+                comentarioLeido = new Comentario(numeroFilaLeida, autor, mensaje, fuente, etiquetasLeidasPorFila);
+            }
         }
         catch(Exception e){
 //            LOG.error("Error en convertirFilaLeidaAComentario: "+e.getMessage());

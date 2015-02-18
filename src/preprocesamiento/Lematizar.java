@@ -46,7 +46,7 @@ public class Lematizar {
         System.setProperty("treetagger.home", "./Archivos_TreeTagger");
         try{
             for(int i=0; i<listaMensajesOriginales.size(); i++){                
-                mensajeLematizado = new StringBuilder();                
+                mensajeLematizado = new StringBuilder();
                 treeTagger.setModel("./Archivos_TreeTagger/lib/spanish-utf8.par");
                 treeTagger.setHandler(new TokenHandler<String>() {                        
                         public void token(String token, String pos, String lemma) {

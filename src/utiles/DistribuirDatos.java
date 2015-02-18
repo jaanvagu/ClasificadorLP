@@ -1,3 +1,4 @@
+
 /*
  * @author Jairo Andrés
  * Ultima modificacion: Mayo 4 de 2013
@@ -273,7 +274,7 @@ public class DistribuirDatos {
         }
     }
     
-    public void generarListaSoloComentarioUtiles(){
+    public Vector<ComentarioNormalizado> generarListaSoloComentarioUtiles(){
         generarFrecuenciasEtiquetasUtiles(listaComentarios);
         int sinEti = 0;
         int repetidos = 0;
@@ -309,8 +310,11 @@ public class DistribuirDatos {
         guardarListaNuevosComentarios("Utiles Normalizados");
         LOG.debug("Tamaño Consolidado= "+listaComentarios.size());
         LOG.debug("Utiles= "+comentarioUtiles+"\n");
-        System.out.println("Comentarios Repetidos: "+repetidos+"\nVacíos: "+vacios+"\nSin Etiqueta: "+sinEti);
+        LOG.debug("Comentarios Repetidos: "+repetidos);
+        LOG.debug("Vacíos: "+vacios);
+        LOG.debug("Sin Etiqueta: "+sinEti);
 //        generarFrecuenciasEtiquetasUtiles(nuevosComentariosDistribuidos);
+        return nuevosComentariosDistribuidos;
     }
     
     public Vector<ComentarioNormalizado> eliminarComentariosConPalabrasRepetidasEnExceso(){

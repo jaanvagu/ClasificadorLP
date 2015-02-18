@@ -7,10 +7,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import preprocesamiento.Preprocesamiento;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Vector;
+import java.util.*;
 
 public class Util {
 
@@ -28,6 +25,9 @@ public class Util {
             ComentarioNormalizado comentario = listaComentariosNormalizados.elementAt(i);
 
             String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
+            if(etiqueta.equals("trabajo") || etiqueta.equals("liderazgo")){
+                break;
+            }
             ArrayList<String> mensajes = tabla_etiqueta_mensajes.get(etiqueta);
             if(mensajes == null){
                 mensajes = new ArrayList<String>();
@@ -65,6 +65,9 @@ public class Util {
             ComentarioNormalizado comentario = listaComentariosNormalizados.elementAt(i);
 
             String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
+            if(etiqueta.equals("trabajo")){
+                break;
+            }
             ArrayList<String> mensajes = tabla_etiqueta_mensajes.get(etiqueta);
             if(mensajes == null){
                 mensajes = new ArrayList<String>();
@@ -75,7 +78,6 @@ public class Util {
             }
             mensajes.add(mensajeTemp.trim());
             tabla_etiqueta_mensajes.put(etiqueta, mensajes);
-
         }
 
         Enumeration<String> enumEtiquetas = tabla_etiqueta_mensajes.keys();
@@ -88,7 +90,7 @@ public class Util {
                 jsonObject.put("content", mensajes.get(j));
                 jsonArray.add(jsonObject);
             }
-            gestionarArchivos.crearArchivoJson("_"+etiqueta);
+            gestionarArchivos.crearArchivoJson(etiqueta);
             gestionarArchivos.escribirLineaEnArchivoTexto(jsonArray.toJSONString());
             gestionarArchivos.cerrarArchivoTexto();
         }
@@ -112,7 +114,23 @@ public class Util {
             }
         }
 
-        System.out.println(tabla_etiqueta_cantidad);
+        Enumeration<String> etisEnum = tabla_etiqueta_cantidad.keys();
+        Map<Integer, String> map = new TreeMap<Integer, String>(
+                //Se define nuevo comparador para que ordene descendentemente
+                new Comparator<Integer>() {
+                    @Override
+                    public int compare(Integer integer, Integer integer2) {
+                        return integer2.compareTo(integer);
+
+                    }
+                }
+        );
+        while(etisEnum.hasMoreElements()){
+            String eti = etisEnum.nextElement();
+            map.put(tabla_etiqueta_cantidad.get(eti), eti);
+        }
+
+        System.out.println(tabla_etiqueta_cantidad.size()+"\n"+map.size()+"\n"+map);
     }
 
 }

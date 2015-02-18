@@ -57,7 +57,7 @@ public class Preprocesamiento {
             listaMensajesProcesados.addElement(mensajeDeComentario);            
         }
 
-        //ejecutarPreprocesamientoSecuencial();
+        ejecutarPreprocesamientoSecuencial();
         LOG.info("Preprocesamiento Realizado");
     }
 
@@ -73,7 +73,7 @@ public class Preprocesamiento {
     }
 
     //Método que recorre la lista de mensajes y ejecuta una función según el tipo que le ingrese como parámetro
-    //Se apoya en métodos auxiliares definidos posteriormente. 
+    //Se apoya en métodos auxiliares definidos posteriormente.
     private void ejecutarTipoPreProcesamiento(String tipo){
         for(int i=0; i<listaMensajesProcesados.size(); i++){
             StringBuilder mensajePreProcesado = new StringBuilder();

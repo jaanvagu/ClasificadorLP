@@ -101,7 +101,7 @@ public class GestionarArchivos {
                         
             // ***  WINDOWS ***
             if(tipo.equals("Normalizado")){
-                temprutaArchivo = "./"+nombreArchivo+" - "+tipo+" "+Constantes.version2_0;
+                temprutaArchivo = "./Archivos_Guardados/"+nombreArchivo+" - "+tipo+" "+Constantes.version2_0;
             }else{
                 temprutaArchivo = "./Archivos_Guardados/Consolidado "+obtenerNombreCompletoDelConsolidado()
                                  +" - "+tipo+" "+Constantes.version2_0;
@@ -121,7 +121,8 @@ public class GestionarArchivos {
     public Vector<ComentarioNormalizado> cargarComentariosNormalizados(String subCarpeta, String nombreConsolidado, boolean elegirRuta){
         String temprutaArchivo;
         if(elegirRuta){
-            temprutaArchivo = obtenerRutaArchivo("C:/Users/JairoAndrés/Desktop/Archivos Guardados/"+subCarpeta+nombreConsolidado);
+            temprutaArchivo = obtenerRutaArchivo
+                    ("/home/meridean-hp/repositorios/ClasificadorLP/Archivos_Guardados/"+subCarpeta+nombreConsolidado);
         }
         else{
             temprutaArchivo = "C:/Users/JairoAndrés/Desktop/Archivos Guardados/"+subCarpeta+nombreConsolidado;
