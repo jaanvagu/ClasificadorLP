@@ -52,7 +52,7 @@ public class Lematizar {
                         public void token(String token, String pos, String lemma) {
                             if(!lemma.isEmpty()){
                                 lemma = Preprocesamiento.quitarAcentos(lemma);
-                                mensajeLematizado.append(lemma).append(" ");
+                                mensajeLematizado.append(pos).append(" ");
                             }
                             else{
                                 LOG.warn("*******No encontró lema*******");

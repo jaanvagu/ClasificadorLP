@@ -101,10 +101,10 @@ public class GestionarArchivos {
                         
             // ***  WINDOWS ***
             if(tipo.equals("Normalizado")){
-                temprutaArchivo = "./Archivos_Guardados/"+nombreArchivo+" - "+tipo+" "+Constantes.version2_0;
+                temprutaArchivo = "./Archivos_Guardados/"+nombreArchivo+" - "+tipo;
             }else{
                 temprutaArchivo = "./Archivos_Guardados/Consolidado "+obtenerNombreCompletoDelConsolidado()
-                                 +" - "+tipo+" "+Constantes.version2_0;
+                                 +" - "+tipo;
             }
             
             FileOutputStream archivoDeSalida = new FileOutputStream(temprutaArchivo);

@@ -113,7 +113,9 @@ public class Main {
 //        distribuir.generarListaSoloComentarioUtiles();
         
         // ********* IMPRIMIR TEXTO DE LOS COMENTARIOS *********
-
+        for(int i=0; i<listaComentariosNormalizados.size(); i++) {
+            System.out.println(listaComentariosNormalizados.elementAt(i).obtenerListaPalabrasEnComentario());
+        }
 
         // ********* ESCRIBIR JSON CON COMENTARIOS POR CATEGORÍA ***********
 //        Util.generarJsonEntrenamiento(listaComentariosNormalizados);
@@ -123,7 +125,7 @@ public class Main {
 
 
         // ********* EXTRACCIÓN DE CARACTERÍSTICAS *********
-        gestionVectorPalabras = new GestionarVectorPalabras(listaComentariosNormalizados);
+//        gestionVectorPalabras = new GestionarVectorPalabras(listaComentariosNormalizados);
 //        gestionVectorPalabras.contruirVectorDePalabras();
 //        gestionVectorPalabras.generarVectoresDeFrecuenciasDePalabras();
 //        gestionVectorPalabras.obtenerListaVectoresDeFrecuencias();

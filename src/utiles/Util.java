@@ -130,7 +130,7 @@ public class Util {
             map.put(tabla_etiqueta_cantidad.get(eti), eti);
         }
 
-        System.out.println(tabla_etiqueta_cantidad.size()+"\n"+map.size()+"\n"+map);
+        System.out.println(map);
     }
 
 }
