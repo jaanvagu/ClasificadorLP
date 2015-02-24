@@ -52,7 +52,7 @@ public class Lematizar {
                         public void token(String token, String pos, String lemma) {
                             if(!lemma.isEmpty()){
                                 lemma = Preprocesamiento.quitarAcentos(lemma);
-                                mensajeLematizado.append(pos).append(" ");
+                                mensajeLematizado.append(lemma).append(" ");
                             }
                             else{
                                 LOG.warn("*******No encontró lema*******");
@@ -69,32 +69,45 @@ public class Lematizar {
             LOG.error("Error en lematizar: "+e.getMessage());
         }
         finally {
-                treeTagger.destroy();
+            treeTagger.destroy();
         }
     }
     
-    public void generarTablaPalabras_CategoriaLexica(Vector<ComentarioNormalizado> listaComentarios){   
+    public Hashtable<String,String> generarTablaPalabras_CategoriaLexica(Vector<ComentarioNormalizado> listaComentarios){
+//    public void generarTablaPalabras_CategoriaLexica(Vector<ComentarioNormalizado> listaComentarios){
+
+        final Set<String> setSemanticForms = new HashSet<String>();
+
         listaComentariosParaObtenerCateLexica = new Vector(listaComentarios);
-        System.setProperty("treetagger.home", "/TreeTagger");
+        System.setProperty("treetagger.home", "./Archivos_TreeTagger");
         try{
             for(int i=0; i<listaComentariosParaObtenerCateLexica.size(); i++){                                        
-                treeTagger.setModel("/treetagger/lib/spanish.par");                
+                treeTagger.setModel("./Archivos_TreeTagger/lib/spanish-utf8.par");
                 treeTagger.setHandler(new TokenHandler<String>() {                        
                         public void token(String token, String pos, String lemma) {
-                            if(!lemma.isEmpty()){
-                                tablaPalabras_CategoriaLexica.put(token, pos);                                
+                            if(!pos.isEmpty()){
+                                tablaPalabras_CategoriaLexica.put(token, pos);
+                                setSemanticForms.add(pos);
                             }
                         }
-                });                                                                
+                });
                 treeTagger.process(listaComentariosParaObtenerCateLexica.elementAt(i).obtenerListaPalabrasEnComentario());                                           
-            }            
+            }
+
+//            System.out.println(setSemanticForms);
+//            System.out.println(setSemanticForms.size());
+
         }
         catch(Exception e){
             LOG.error("Error en generarTablaPalabras_CategoriaLexica: "+e.getMessage());
         }
         finally {
-                treeTagger.destroy();
+            treeTagger.destroy();
+            LOG.info("Finalizó creación de tabla de formas semánticas");
+            return tablaPalabras_CategoriaLexica;
         }
+
+//        return tablaPalabras_CategoriaLexica;
     }
 
     private Vector<String> mensajeAVectorPalabras(String mensaje){

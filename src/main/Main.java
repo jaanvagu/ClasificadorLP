@@ -94,6 +94,18 @@ public class Main {
 //        listaComentariosNormalizados = gestionArchivos.cargarComentariosNormalizados("Distribuidos Uniformemente", "", true);
 //        listaComentariosNormalizados = gestionArchivos.cargarComentariosNormalizados("Utiles Normalizados Sin_Eti_Ruido", "", true);
         listaComentariosNormalizados = gestionArchivos.cargarComentariosNormalizados("","", true);
+
+
+        // ********** MEZCLA DE LISTAS DE COMENTARIOS
+//        Vector<ComentarioNormalizado> listaComentariosNormalizados2 = gestionArchivos.cargarComentariosNormalizados("","", true);
+//        Vector<ComentarioNormalizado> listaComentariosNormalizados3 = gestionArchivos.cargarComentariosNormalizados("","", true);
+//        ArrayList<Vector <ComentarioNormalizado>> listas = new ArrayList<Vector<ComentarioNormalizado>>();
+//        listas.add(listaComentariosNormalizados);
+//        listas.add(listaComentariosNormalizados2);
+//        listas.add(listaComentariosNormalizados3);
+//        Vector<ComentarioNormalizado> listaResultante = Util.mezclarListasComentarios(listas);
+//        gestionArchivos = new GestionarArchivos();
+//        gestionArchivos.guardarComentariosNormalizados(listaResultante, "mezcla");
         
         // ********* EXTENSIÓN DE COMENTARIOS *********
 //        extenderComentarios = new ExtenderComentarios(listaComentariosNormalizados);
@@ -113,15 +125,18 @@ public class Main {
 //        distribuir.generarListaSoloComentarioUtiles();
         
         // ********* IMPRIMIR TEXTO DE LOS COMENTARIOS *********
-        for(int i=0; i<listaComentariosNormalizados.size(); i++) {
-            System.out.println(listaComentariosNormalizados.elementAt(i).obtenerListaPalabrasEnComentario());
-        }
+//        for(int i=0; i<listaComentariosNormalizados.size(); i++) {
+//            System.out.println(listaComentariosNormalizados.elementAt(i).obtenerListaPalabrasEnComentario());
+//        }
+
+//        Lematizar lematizar = new Lematizar();
+//        lematizar.generarTablaPalabras_CategoriaLexica(listaComentariosNormalizados);
 
         // ********* ESCRIBIR JSON CON COMENTARIOS POR CATEGORÍA ***********
 //        Util.generarJsonEntrenamiento(listaComentariosNormalizados);
 //        Util.escribirComentariosEnJson(listaComentariosNormalizados);
-        Util.cantidadDeComentariosPorEtiqueta(listaComentariosNormalizados);
-//        System.out.println(listaComentariosNormalizados.size());
+//        Util.cantidadDeComentariosPorEtiqueta(listaComentariosNormalizados);
+        Util.generarJsonAdjSentimiento(listaComentariosNormalizados);
 
 
         // ********* EXTRACCIÓN DE CARACTERÍSTICAS *********

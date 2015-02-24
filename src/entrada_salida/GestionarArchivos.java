@@ -140,6 +140,7 @@ public class GestionarArchivos {
         catch(Exception e){
             LOG.error("Error cargar archivo Comentario Normalizado: "+e.getMessage());            
         }
+        LOG.info("N° Mensajes: " + listaComentariosLeidos.size());
         return listaComentariosLeidos;
     }
     

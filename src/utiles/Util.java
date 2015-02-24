@@ -5,8 +5,11 @@ import entrada_salida.GestionarArchivos;
 import estructuras.ComentarioNormalizado;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.openrdf.query.algebra.Str;
+import preprocesamiento.Lematizar;
 import preprocesamiento.Preprocesamiento;
 
+import java.io.StringReader;
 import java.util.*;
 
 public class Util {
@@ -25,8 +28,14 @@ public class Util {
             ComentarioNormalizado comentario = listaComentariosNormalizados.elementAt(i);
 
             String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
-            if(etiqueta.equals("trabajo") || etiqueta.equals("liderazgo")){
-                break;
+            if(etiqueta.equals("negaivo")){
+                etiqueta = "negativo";
+            }
+            if(etiqueta.equals("nwg")){
+                etiqueta = "negativo";
+            }
+            if(etiqueta.equals("posivo")){
+                etiqueta = "positivo";
             }
             ArrayList<String> mensajes = tabla_etiqueta_mensajes.get(etiqueta);
             if(mensajes == null){
@@ -50,7 +59,60 @@ public class Util {
             jsonObject.put(etiqueta, jsonArray);
         }
 
-        gestionarArchivos.crearArchivoJson("Comentarios_prueba_7000");
+        gestionarArchivos.crearArchivoJson(GestionarArchivos.nombreArchivo + "_adj_sent");
+        gestionarArchivos.escribirLineaEnArchivoTexto(jsonObject.toJSONString());
+        gestionarArchivos.cerrarArchivoTexto();
+
+    }
+
+    public static void generarJsonAdjSentimiento(Vector<ComentarioNormalizado> listaComentariosNormalizados){
+
+        Hashtable<String, Set<String>> tabla_etiqueta_adjetivos = new Hashtable<String, Set<String>>();
+
+        JSONObject jsonObject = new JSONObject();
+
+        Lematizar lematizar = new Lematizar();
+        Hashtable<String, String> tabla_formas_semanticas = lematizar.generarTablaPalabras_CategoriaLexica(listaComentariosNormalizados);
+
+        for(int i=0; i<listaComentariosNormalizados.size(); i++){
+
+            ComentarioNormalizado comentario = listaComentariosNormalizados.elementAt(i);
+
+            String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
+            if(etiqueta.equals("negaivo")){
+                etiqueta = "negativo";
+            }
+            if(etiqueta.equals("nwg")){
+                etiqueta = "negativo";
+            }
+            if(etiqueta.equals("posivo")){
+                etiqueta = "positivo";
+            }
+
+            Set<String> adjetivos = tabla_etiqueta_adjetivos.get(etiqueta);
+            if(adjetivos == null){
+                adjetivos = new HashSet<String>();
+            }
+            for(int j=0; j<comentario.obtenerListaPalabrasEnComentario().size(); j++){
+                String palabra = comentario.obtenerListaPalabrasEnComentario().elementAt(j);
+                if(esAdjetivo(tabla_formas_semanticas, palabra)){
+                    adjetivos.add(palabra);
+                }
+            }
+            tabla_etiqueta_adjetivos.put(etiqueta, adjetivos);
+
+        }
+
+        Enumeration<String> enumEtiquetas = tabla_etiqueta_adjetivos.keys();
+        while (enumEtiquetas.hasMoreElements()){
+            JSONArray jsonArray = new JSONArray();
+            String etiqueta = enumEtiquetas.nextElement();
+            Set<String> adejtivos = tabla_etiqueta_adjetivos.get(etiqueta);
+            jsonArray.addAll(adejtivos);
+            jsonObject.put(etiqueta, jsonArray);
+        }
+
+        gestionarArchivos.crearArchivoJson(GestionarArchivos.nombreArchivo + "_adj_sent");
         gestionarArchivos.escribirLineaEnArchivoTexto(jsonObject.toJSONString());
         gestionarArchivos.cerrarArchivoTexto();
 
@@ -96,7 +158,6 @@ public class Util {
         }
     }
 
-
     public static void cantidadDeComentariosPorEtiqueta(Vector<ComentarioNormalizado> listaComentariosNormalizados){
         Hashtable<String,Integer> tabla_etiqueta_cantidad = new Hashtable<String, Integer>();
 
@@ -105,12 +166,30 @@ public class Util {
             ComentarioNormalizado comentario = listaComentariosNormalizados.elementAt(i);
             if(tabla_etiqueta_cantidad.containsKey(comentario.obtenerEtiquetas().elementAt(0))){
                 int temp = tabla_etiqueta_cantidad.get(comentario.obtenerEtiquetas().elementAt(0));
-                tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(comentario.obtenerEtiquetas().elementAt(0)),
-                        ++temp);
+                String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
+                if(etiqueta.equals("negaivo")){
+                    etiqueta = "negativo";
+                }
+                if(etiqueta.equals("nwg")){
+                    etiqueta = "negativo";
+                }
+                if(etiqueta.equals("posivo")){
+                    etiqueta = "positivo";
+                }
+                tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(etiqueta),++temp);
             }
             else{
-                tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(comentario.obtenerEtiquetas().elementAt(0)),
-                        1);
+                String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
+                if(etiqueta.equals("negaivo")){
+                    etiqueta = "negativo";
+                }
+                if(etiqueta.equals("nwg")){
+                    etiqueta = "negativo";
+                }
+                if(etiqueta.equals("posivo")){
+                    etiqueta = "positivo";
+                }
+                tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(etiqueta), 1);
             }
         }
 
@@ -130,7 +209,31 @@ public class Util {
             map.put(tabla_etiqueta_cantidad.get(eti), eti);
         }
 
-        System.out.println(map);
+        System.out.println(tabla_etiqueta_cantidad);
+    }
+
+    public static Vector<ComentarioNormalizado> mezclarListasComentarios(ArrayList<Vector <ComentarioNormalizado>> listas){
+        Vector<ComentarioNormalizado> listaResultante = new Vector<ComentarioNormalizado>();
+
+        for (int i=0; i<listas.size(); i++){
+            listaResultante.addAll(listas.get(i));
+        }
+
+        return listaResultante;
+    }
+
+    public static boolean esAdjetivo(Hashtable<String, String> tabla_formas_semanticas, String palabra){
+        if (tabla_formas_semanticas.containsKey(palabra.trim().toLowerCase())){
+            if (tabla_formas_semanticas.get(palabra).equals("ADJ")){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
     }
 
 }
