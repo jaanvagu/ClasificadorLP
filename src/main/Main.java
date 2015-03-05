@@ -135,8 +135,8 @@ public class Main {
         // ********* ESCRIBIR JSON CON COMENTARIOS POR CATEGORÍA ***********
 //        Util.generarJsonEntrenamiento(listaComentariosNormalizados);
 //        Util.escribirComentariosEnJson(listaComentariosNormalizados);
-//        Util.cantidadDeComentariosPorEtiqueta(listaComentariosNormalizados);
-        Util.generarJsonAdjSentimiento(listaComentariosNormalizados);
+        Util.cantidadDeComentariosPorEtiqueta(listaComentariosNormalizados);
+//        Util.generarJsonAdjSentimiento(listaComentariosNormalizados);
 
 
         // ********* EXTRACCIÓN DE CARACTERÍSTICAS *********
@@ -145,7 +145,7 @@ public class Main {
 //        gestionVectorPalabras.generarVectoresDeFrecuenciasDePalabras();
 //        gestionVectorPalabras.obtenerListaVectoresDeFrecuencias();
         
-        // ********* SVM EJECUCIÓN *********
+        // ********* SVM EJECUCIÓN ********
 //        SVM = new SVM(listaComentariosNormalizados, gestionVectorPalabras.obtenerListaVectoresDeFrecuencias());
 //        SVM.ejecutarSVM(20);
         

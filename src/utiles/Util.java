@@ -161,34 +161,30 @@ public class Util {
     public static void cantidadDeComentariosPorEtiqueta(Vector<ComentarioNormalizado> listaComentariosNormalizados){
         Hashtable<String,Integer> tabla_etiqueta_cantidad = new Hashtable<String, Integer>();
 
+        int cont = 0;
+
         for(int i=0; i<listaComentariosNormalizados.size(); i++){
 
             ComentarioNormalizado comentario = listaComentariosNormalizados.elementAt(i);
-            if(tabla_etiqueta_cantidad.containsKey(comentario.obtenerEtiquetas().elementAt(0))){
-                int temp = tabla_etiqueta_cantidad.get(comentario.obtenerEtiquetas().elementAt(0));
-                String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
-                if(etiqueta.equals("negaivo")){
-                    etiqueta = "negativo";
-                }
-                if(etiqueta.equals("nwg")){
-                    etiqueta = "negativo";
-                }
-                if(etiqueta.equals("posivo")){
-                    etiqueta = "positivo";
-                }
+            String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
+
+            if(etiqueta.equals("negaivo")){
+                etiqueta = "negativo";
+            }
+            if(etiqueta.equals("nwg")){
+                etiqueta = "negativo";
+            }
+            if(etiqueta.equals("posivo")){
+                etiqueta = "positivo";
+            }
+
+            if(tabla_etiqueta_cantidad.containsKey(etiqueta)){
+                cont++;
+                int temp = tabla_etiqueta_cantidad.get(etiqueta);
                 tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(etiqueta),++temp);
             }
             else{
-                String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
-                if(etiqueta.equals("negaivo")){
-                    etiqueta = "negativo";
-                }
-                if(etiqueta.equals("nwg")){
-                    etiqueta = "negativo";
-                }
-                if(etiqueta.equals("posivo")){
-                    etiqueta = "positivo";
-                }
+                cont++;
                 tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(etiqueta), 1);
             }
         }
@@ -210,6 +206,7 @@ public class Util {
         }
 
         System.out.println(tabla_etiqueta_cantidad);
+        System.out.println(cont);
     }
 
     public static Vector<ComentarioNormalizado> mezclarListasComentarios(ArrayList<Vector <ComentarioNormalizado>> listas){
