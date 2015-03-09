@@ -15,7 +15,7 @@ public class ArchivoConfiguracionLog4j {
         
         gestionArchivosConfigLog4j.crearArchivoTexto("Config_LOG_Ejecucion", -1); // No aplica cantidad de datos, por ende -1
         
-        gestionArchivosConfigLog4j.escribirLineaEnArchivoTexto("log4j.rootLogger=INFO,CONSOLA, File");
+        gestionArchivosConfigLog4j.escribirLineaEnArchivoTexto("log4j.rootLogger=DEBUG,CONSOLA, File");
         gestionArchivosConfigLog4j.escribirLineaEnArchivoTexto("log4j.logger.httpclient=ERROR,CONSOLA");
         gestionArchivosConfigLog4j.escribirLineaEnArchivoTexto("log4j.appender.CONSOLA=org.apache.log4j.ConsoleAppender");
         gestionArchivosConfigLog4j.escribirLineaEnArchivoTexto("log4j.appender.CONSOLA.layout=org.apache.log4j.PatternLayout");

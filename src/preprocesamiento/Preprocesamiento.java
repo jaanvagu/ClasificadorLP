@@ -53,8 +53,8 @@ public class Preprocesamiento {
         LOG.info("Normalizando...");
         listaMensajesProcesados = new Vector();   
         for(int i=0; i<listaComentarios.size(); i++){
-            String mensajeDeComentario = listaComentarios.elementAt(i).obtenerMensaje();                                    
-            listaMensajesProcesados.addElement(mensajeDeComentario);            
+            String mensajeDeComentario = listaComentarios.elementAt(i).obtenerMensaje();
+            listaMensajesProcesados.addElement(mensajeDeComentario);
         }
 
         ejecutarPreprocesamientoSecuencial();
@@ -68,7 +68,7 @@ public class Preprocesamiento {
         ejecutarTipoPreProcesamiento("eliminarURLs");
         ejecutarTipoPreProcesamiento("eliminarOnomatopeyas");
         ejecutarTipoPreProcesamiento("eliminarCaracteresDiferentesALetras");
-        ejecutarTipoPreProcesamiento("eliminarPalabrasVacias");
+//        ejecutarTipoPreProcesamiento("eliminarPalabrasVacias");
         ejecutarTipoPreProcesamiento("eliminarEspaciosEnBlancoAdicionales");
     }
 
@@ -146,7 +146,7 @@ public class Preprocesamiento {
         recorteDosCaracteres = "#";
         if(palabra.length()>=4){
             if(palabra.length()>=5){
-                recorteTresCaracteres = palabra.substring(palabra.length()-4,palabra.length()-3);    
+                recorteTresCaracteres = palabra.substring(palabra.length()-4,palabra.length()-3);
             }
             recorteDosCaracteres = palabra.substring(palabra.length()-3,palabra.length()-2);
         }       

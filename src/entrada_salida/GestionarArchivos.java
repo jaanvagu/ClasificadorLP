@@ -37,7 +37,7 @@ public class GestionarArchivos {
 
     //Método que obtiene la ruta de un archivo, a partir de un selector visual de archivos.
     public String obtenerRutaArchivoCSV(String tipo){
-        selectorArchivo = new JFileChooser("/home/meridean-hp/Escritorio");
+        selectorArchivo = new JFileChooser("/home/meridean-hp/Documentos/Datos Anotados Meridean");
         filtroExtensionArchivo = new FileNameExtensionFilter("Archivos de texto (."+tipo+")", tipo);
         selectorArchivo.setFileFilter(filtroExtensionArchivo);
         opcionSeleccionada = selectorArchivo.showOpenDialog(new JTextArea());

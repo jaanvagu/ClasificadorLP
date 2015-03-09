@@ -3,6 +3,7 @@ package utiles;
 
 import entrada_salida.GestionarArchivos;
 import estructuras.ComentarioNormalizado;
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.openrdf.query.algebra.Str;
@@ -13,6 +14,8 @@ import java.io.StringReader;
 import java.util.*;
 
 public class Util {
+
+    private final static Logger LOG = Logger.getLogger(Util.class);
 
     private static GestionarArchivos gestionarArchivos = new GestionarArchivos();
 
@@ -120,42 +123,49 @@ public class Util {
 
     public static void generarJsonEntrenamiento(Vector<ComentarioNormalizado> listaComentariosNormalizados){
 
-        Hashtable<String,ArrayList<String>> tabla_etiqueta_mensajes = new Hashtable<String, ArrayList<String>>();
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        ArrayList<String> mensajes = new ArrayList<String>();
+        ArrayList<Integer> sentimientoLista = new ArrayList<Integer>(); //0: Negativo  | 1: Positivo | 2: Neutral
 
         for(int i=0; i<listaComentariosNormalizados.size(); i++){
 
             ComentarioNormalizado comentario = listaComentariosNormalizados.elementAt(i);
-
+            int id = comentario.obtenerIdComentario();
             String etiqueta = comentario.obtenerEtiquetas().elementAt(0);
-            if(etiqueta.equals("trabajo")){
-                break;
-            }
-            ArrayList<String> mensajes = tabla_etiqueta_mensajes.get(etiqueta);
-            if(mensajes == null){
-                mensajes = new ArrayList<String>();
-            }
+            int sentimiento = 5;
+            if(etiqueta.equals("negativo"))
+                sentimiento = 0;
+            else if(etiqueta.equals("positivo"))
+                sentimiento = 1;
+            else if(etiqueta.equals("neutro"))
+                sentimiento = 2;
             String mensajeTemp = "";
             for(int j=0; j<comentario.obtenerListaPalabrasEnComentario().size(); j++){
                 mensajeTemp += " "+comentario.obtenerListaPalabrasEnComentario().elementAt(j);
             }
+            ids.add(id);
             mensajes.add(mensajeTemp.trim());
-            tabla_etiqueta_mensajes.put(etiqueta, mensajes);
+            sentimientoLista.add(sentimiento);
         }
 
-        Enumeration<String> enumEtiquetas = tabla_etiqueta_mensajes.keys();
-        while (enumEtiquetas.hasMoreElements()){
-            JSONArray jsonArray = new JSONArray();
-            String etiqueta = enumEtiquetas.nextElement();
-            ArrayList<String> mensajes = tabla_etiqueta_mensajes.get(etiqueta);
-            for(int j=0; j<mensajes.size(); j++){
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("content", mensajes.get(j));
-                jsonArray.add(jsonObject);
-            }
-            gestionarArchivos.crearArchivoJson(etiqueta);
-            gestionarArchivos.escribirLineaEnArchivoTexto(jsonArray.toJSONString());
-            gestionarArchivos.cerrarArchivoTexto();
-        }
+        JSONObject jsonObject = new JSONObject();
+        JSONArray idListJson = new JSONArray();
+        JSONArray mensajesListJson = new JSONArray();
+        JSONArray sentimientoListJson = new JSONArray();
+
+        idListJson.addAll(ids);
+        mensajesListJson.addAll(mensajes);
+        sentimientoListJson.addAll(sentimientoLista);
+
+        jsonObject.put("id", idListJson);
+        jsonObject.put("review", mensajesListJson);
+        jsonObject.put("sentiment", sentimientoListJson);
+
+        gestionarArchivos.crearArchivoJson("json_train_no_stemmer");
+        gestionarArchivos.escribirLineaEnArchivoTexto(jsonObject.toJSONString());
+        gestionarArchivos.cerrarArchivoTexto();
+
+        LOG.info("Json de entrenamiento generado");
     }
 
     public static void cantidadDeComentariosPorEtiqueta(Vector<ComentarioNormalizado> listaComentariosNormalizados){

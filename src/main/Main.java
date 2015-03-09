@@ -106,15 +106,11 @@ public class Main {
 //        Vector<ComentarioNormalizado> listaResultante = Util.mezclarListasComentarios(listas);
 //        gestionArchivos = new GestionarArchivos();
 //        gestionArchivos.guardarComentariosNormalizados(listaResultante, "mezcla");
-        
-        // ********* EXTENSIÓN DE COMENTARIOS *********
-//        extenderComentarios = new ExtenderComentarios(listaComentariosNormalizados);
-//        listaComentariosNormalizados = new Vector(extenderComentarios.extender(false, true));
+
 
         // ********* DISTRIBUCIÓN DE DATOS *********
 //        distribuir = new DistribuirDatos(listaComentariosNormalizados);
 //        listaComentariosNormalizados = distribuir.generarListaSoloComentarioUtiles();
-//        distribuir = new DistribuirDatos(listaComentariosNormalizados);
 //        listaComentariosNormalizados = distribuir.eliminarComentariosConPalabrasRepetidasEnExceso();
 //        distribuir.eliminarComentariosConEtiquetasRuido();
 //        distribuir.eliminarComentariosConEtiquetasBajaPrecision();
@@ -125,58 +121,22 @@ public class Main {
 //        distribuir.generarListaSoloComentarioUtiles();
         
         // ********* IMPRIMIR TEXTO DE LOS COMENTARIOS *********
-//        for(int i=0; i<listaComentariosNormalizados.size(); i++) {
-//            System.out.println(listaComentariosNormalizados.elementAt(i).obtenerListaPalabrasEnComentario());
-//        }
-
 //        Lematizar lematizar = new Lematizar();
-//        lematizar.generarTablaPalabras_CategoriaLexica(listaComentariosNormalizados);
+//        Hashtable<String, String> tabla_formas_semanticas = lematizar.generarTablaPalabras_CategoriaLexica
+//                (listaComentariosNormalizados);
+//
+//        for(int i=0; i<listaComentariosNormalizados.size(); i++) {
+//            if(i%5000 == 0)
+////                System.out.println();
+//        }
 
         // ********* ESCRIBIR JSON CON COMENTARIOS POR CATEGORÍA ***********
 //        Util.generarJsonEntrenamiento(listaComentariosNormalizados);
 //        Util.escribirComentariosEnJson(listaComentariosNormalizados);
-        Util.cantidadDeComentariosPorEtiqueta(listaComentariosNormalizados);
+//        Util.cantidadDeComentariosPorEtiqueta(listaComentariosNormalizados);
 //        Util.generarJsonAdjSentimiento(listaComentariosNormalizados);
 
 
-        // ********* EXTRACCIÓN DE CARACTERÍSTICAS *********
-//        gestionVectorPalabras = new GestionarVectorPalabras(listaComentariosNormalizados);
-//        gestionVectorPalabras.contruirVectorDePalabras();
-//        gestionVectorPalabras.generarVectoresDeFrecuenciasDePalabras();
-//        gestionVectorPalabras.obtenerListaVectoresDeFrecuencias();
-        
-        // ********* SVM EJECUCIÓN ********
-//        SVM = new SVM(listaComentariosNormalizados, gestionVectorPalabras.obtenerListaVectoresDeFrecuencias());
-//        SVM.ejecutarSVM(20);
-        
-//        // ********* INDICADORES SVM *********
-//        gestionIndicadores = new GestionarIndicadores(SVM.getTabla_Etiqueta_AparicionesTotalesEstimadas(),SVM.getTabla_Etiqueta_AparicionesCorrectas(), SVM.getTabla_Etiqueta_AparicionesTotalesCorrespondientes());
-//        gestionIndicadores.calcularIndicadores("SVM");
-//        gestionIndicadores.imprimirIndicadoresParaGrafica();
-        
-        // ********* GRAFO, SEMILLAS Y CONFIGURACIÓN LABEL PROPAGATION *********
-//        gestionDistancias = new GestionarDistancias();
-//        gestionDistancias.calcularSimilitudCosenoEntreCadaParDeComentarios(gestionVectorPalabras.obtenerListaVectoresDeFrecuencias());
-//        gestionSemillasLP = new GestionarSemillasLP(listaComentariosNormalizados);
-//        gestionSemillasLP.generarArchivoSemillas(20);
-//        gestionSemillasLP.generarArchivoSolucion();
-//        ArchivoConfiguracionLP.generarArchivo(listaComentariosNormalizados.size());
-        
-//        // ********* LABEL PROPAGATION EJECUCIÓN *********
-//        gestionLabelPropagation = new GestionarLabelPropagation();
-//        gestionLabelPropagation.ejecutarLabelPropagation();
-//        
-//        // ********* INDICADORES PARA LABEL PROPAGATION *********
-//        leerArchivoSalidaLP = new LeerArchivoSalidaLP(false);
-//        gestionIndicadores = new GestionarIndicadores(leerArchivoSalidaLP.obtenerListaEtiquetasCorrespondientes(), leerArchivoSalidaLP.obtenerListaEtiquetasPropagadasLP());
-//        gestionIndicadores.calcularIndicadores("LP");
-//        gestionIndicadores.imprimirIndicadoresParaGrafica();
-//        
-
-        // ********* GENERAR ARCHIVO EXCEL SALIDA *********
-//        escribirExcelSalida = new EscribirExcelSalida(leerArchivoCSV.obtenerListaComentariosLeidos(), listaComentariosNormalizados);
-//        escribirExcelSalida.escribirArchivoSalidaXLS();
-        
         // ********* FINALIZACIONES *********
         Runtime garbage = Runtime.getRuntime();
         garbage.gc();

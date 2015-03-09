@@ -74,7 +74,6 @@ public class Lematizar {
     }
     
     public Hashtable<String,String> generarTablaPalabras_CategoriaLexica(Vector<ComentarioNormalizado> listaComentarios){
-//    public void generarTablaPalabras_CategoriaLexica(Vector<ComentarioNormalizado> listaComentarios){
 
         final Set<String> setSemanticForms = new HashSet<String>();
 
@@ -94,9 +93,6 @@ public class Lematizar {
                 treeTagger.process(listaComentariosParaObtenerCateLexica.elementAt(i).obtenerListaPalabrasEnComentario());                                           
             }
 
-//            System.out.println(setSemanticForms);
-//            System.out.println(setSemanticForms.size());
-
         }
         catch(Exception e){
             LOG.error("Error en generarTablaPalabras_CategoriaLexica: "+e.getMessage());
@@ -106,8 +102,6 @@ public class Lematizar {
             LOG.info("Finalizó creación de tabla de formas semánticas");
             return tablaPalabras_CategoriaLexica;
         }
-
-//        return tablaPalabras_CategoriaLexica;
     }
 
     private Vector<String> mensajeAVectorPalabras(String mensaje){
