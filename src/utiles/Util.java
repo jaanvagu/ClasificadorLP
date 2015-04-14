@@ -121,7 +121,8 @@ public class Util {
 
     }
 
-    public static void generarJsonEntrenamiento(Vector<ComentarioNormalizado> listaComentariosNormalizados){
+    public static void generarJsonEntrenamiento(Vector<ComentarioNormalizado> listaComentariosNormalizados,
+                                                String nombreArchivo){
 
         ArrayList<Integer> ids = new ArrayList<Integer>();
         ArrayList<String> mensajes = new ArrayList<String>();
@@ -161,17 +162,15 @@ public class Util {
         jsonObject.put("review", mensajesListJson);
         jsonObject.put("sentiment", sentimientoListJson);
 
-        gestionarArchivos.crearArchivoJson("json_train_no_stemmer");
+        gestionarArchivos.crearArchivoJson(nombreArchivo);
         gestionarArchivos.escribirLineaEnArchivoTexto(jsonObject.toJSONString());
         gestionarArchivos.cerrarArchivoTexto();
 
         LOG.info("Json de entrenamiento generado");
     }
 
-    public static void cantidadDeComentariosPorEtiqueta(Vector<ComentarioNormalizado> listaComentariosNormalizados){
+    public static Hashtable<String,Integer> cantidadDeComentariosPorEtiqueta(Vector<ComentarioNormalizado> listaComentariosNormalizados){
         Hashtable<String,Integer> tabla_etiqueta_cantidad = new Hashtable<String, Integer>();
-
-        int cont = 0;
 
         for(int i=0; i<listaComentariosNormalizados.size(); i++){
 
@@ -189,12 +188,10 @@ public class Util {
             }
 
             if(tabla_etiqueta_cantidad.containsKey(etiqueta)){
-                cont++;
                 int temp = tabla_etiqueta_cantidad.get(etiqueta);
                 tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(etiqueta),++temp);
             }
             else{
-                cont++;
                 tabla_etiqueta_cantidad.put(Preprocesamiento.quitarAcentos(etiqueta), 1);
             }
         }
@@ -216,7 +213,7 @@ public class Util {
         }
 
         System.out.println(tabla_etiqueta_cantidad);
-        System.out.println(cont);
+        return tabla_etiqueta_cantidad;
     }
 
     public static Vector<ComentarioNormalizado> mezclarListasComentarios(ArrayList<Vector <ComentarioNormalizado>> listas){

@@ -17,12 +17,11 @@ import evaluacion.GestionarIndicadores;
 import extraccion_caracteristicas.GestionarDistancias;
 import extraccion_caracteristicas.GestionarVectorPalabras;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Vector;
+import java.util.*;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.openrdf.query.algebra.Str;
 import preprocesamiento.Lematizar;
 import preprocesamiento.Preprocesamiento;
 import svm.SVM;
@@ -57,7 +56,7 @@ public class Main {
     public static Vector<ComentarioNormalizado> listaComentariosNormalizados;
 
     //Método que construye la lista de comentarios normalizados, a partir de los comentarios preprocesados y lematizados,
-    //y las etiquetas relacionadas a cada comentario. 
+    //y las etiquetas relacionadas a cada comentario.
     private static void normalizarComentarios(Vector<String> listaComentariosPreprocesadosYLematizados,
                                               Vector<Comentario> listaComentariosOriginal){
         listaComentariosNormalizados = new Vector();
@@ -75,7 +74,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        ArchivoConfiguracionLog4j.generarArchivo(); // Archivo de configuración para generar el Log de ejecución
+        ArchivoConfiguracionLog4j.generarArchivo("info"); // Archivo de configuración para generar el Log de ejecución
         PropertyConfigurator.configure("log4j.properties");
 
         // ********* LECTURA Y PREPROCESAMIENTO *********
@@ -96,18 +95,6 @@ public class Main {
         listaComentariosNormalizados = gestionArchivos.cargarComentariosNormalizados("","", true);
 
 
-        // ********** MEZCLA DE LISTAS DE COMENTARIOS
-//        Vector<ComentarioNormalizado> listaComentariosNormalizados2 = gestionArchivos.cargarComentariosNormalizados("","", true);
-//        Vector<ComentarioNormalizado> listaComentariosNormalizados3 = gestionArchivos.cargarComentariosNormalizados("","", true);
-//        ArrayList<Vector <ComentarioNormalizado>> listas = new ArrayList<Vector<ComentarioNormalizado>>();
-//        listas.add(listaComentariosNormalizados);
-//        listas.add(listaComentariosNormalizados2);
-//        listas.add(listaComentariosNormalizados3);
-//        Vector<ComentarioNormalizado> listaResultante = Util.mezclarListasComentarios(listas);
-//        gestionArchivos = new GestionarArchivos();
-//        gestionArchivos.guardarComentariosNormalizados(listaResultante, "mezcla");
-
-
         // ********* DISTRIBUCIÓN DE DATOS *********
 //        distribuir = new DistribuirDatos(listaComentariosNormalizados);
 //        listaComentariosNormalizados = distribuir.generarListaSoloComentarioUtiles();
@@ -124,17 +111,18 @@ public class Main {
 //        Lematizar lematizar = new Lematizar();
 //        Hashtable<String, String> tabla_formas_semanticas = lematizar.generarTablaPalabras_CategoriaLexica
 //                (listaComentariosNormalizados);
-//
+
+
 //        for(int i=0; i<listaComentariosNormalizados.size(); i++) {
-//            if(i%5000 == 0)
-////                System.out.println();
+//            if(i%2000 == 0)
+//                System.out.println(listaComentariosNormalizados.elementAt(i).obtenerListaPalabrasEnComentario().toString());
 //        }
 
         // ********* ESCRIBIR JSON CON COMENTARIOS POR CATEGORÍA ***********
-//        Util.generarJsonEntrenamiento(listaComentariosNormalizados);
+        Util.generarJsonEntrenamiento(listaComentariosNormalizados, "q1_2015_noStemmer_sent_test");
 //        Util.escribirComentariosEnJson(listaComentariosNormalizados);
-//        Util.cantidadDeComentariosPorEtiqueta(listaComentariosNormalizados);
 //        Util.generarJsonAdjSentimiento(listaComentariosNormalizados);
+//        Util.cantidadDeComentariosPorEtiqueta(listaComentariosNormalizados);
 
 
         // ********* FINALIZACIONES *********

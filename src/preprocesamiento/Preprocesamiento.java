@@ -63,12 +63,12 @@ public class Preprocesamiento {
 
     private void ejecutarPreprocesamientoSecuencial(){        
         ejecutarTipoPreProcesamiento("convertirAMinusculas");
-        ejecutarTipoPreProcesamiento("eliminarAcentos");
+//        ejecutarTipoPreProcesamiento("eliminarAcentos");
         ejecutarTipoPreProcesamiento("eliminarRuidoRedesSociales");
         ejecutarTipoPreProcesamiento("eliminarURLs");
         ejecutarTipoPreProcesamiento("eliminarOnomatopeyas");
         ejecutarTipoPreProcesamiento("eliminarCaracteresDiferentesALetras");
-//        ejecutarTipoPreProcesamiento("eliminarPalabrasVacias");
+        ejecutarTipoPreProcesamiento("eliminarPalabrasVacias");
         ejecutarTipoPreProcesamiento("eliminarEspaciosEnBlancoAdicionales");
     }
 
@@ -204,11 +204,13 @@ public class Preprocesamiento {
 
     //Filtra caracteres a través de código ASCII, elimina los que no estén contenidos entre la a....z, los que no sean espacios
     //y lo diferente a "ñ"
-    private String eliminarCaracteresDiferentesALetras(String palabra){        
+    public static String eliminarCaracteresDiferentesALetras(String palabra){
         StringBuilder tempPalabra = new StringBuilder();
         for (int i=0; i<palabra.length(); i++){
             int codigoASCIILetra = palabra.codePointAt(i);
-            if(codigoASCIILetra>=97 && codigoASCIILetra<=122 || codigoASCIILetra==241 || codigoASCIILetra==32){
+            if(codigoASCIILetra>=97 && codigoASCIILetra<=122 || codigoASCIILetra==241 || codigoASCIILetra==32 ||
+                    codigoASCIILetra==225 || codigoASCIILetra==233 || codigoASCIILetra==237 || codigoASCIILetra==243
+                    || codigoASCIILetra==250){
                 tempPalabra.append(palabra.charAt(i));
             }
         }        
@@ -218,5 +220,5 @@ public class Preprocesamiento {
     
     public Vector<String> obtenerMensajesProcesados(){
         return listaMensajesProcesados;
-    }            
+    }
 }
