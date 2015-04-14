@@ -325,7 +325,7 @@ public class DistribuirDatos {
         ArrayList<Integer> posicionesAEliminar = new ArrayList<Integer>();
         for(int i=0; i<listaComentarios.size(); i++){
             int fre = Collections.max(gVectorPalabras.obtenerListaVectoresDeFrecuencias().elementAt(i).obtenerVectorFrecuenciasPalabras());
-            if(fre>8){
+            if(fre>3){
                 posicionesAEliminar.add(i);
             }
         }
